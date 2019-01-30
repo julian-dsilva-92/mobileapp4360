@@ -1,0 +1,15 @@
+Team 8 App Idea
+Julian Dsilva 
+									Andres Cifuentes
+									Jenny Choi
+									Harnoor Singh 
+									Arianna Perez-Guarino
+			
+•	I am a car enthusiast/mechanic who buys used and nonfunctional cars that I like to fix and sell. 
+•	I want a phone app which can let me know about used cars on sale by owners in my area that fit my criteria such as mileage, price, condition, year, and color. 
+•	I also want the app to let me know if people around me are selling specific car parts and the condition of the part(s). 
+•	I must also be able to put my cars and car parts for sale for people around my area to view. 
+•	I want the app to have a feature in which if I am interested in a car or car part I can swipe right and If I am not interested, I can swipe left, and the car will no longer appear on my search results.
+•	After I pick a car I am interested in, I would like to communicate with the buyer/seller to ask further questions, negotiate, etc. 
+•	I would also like a function in which I can set a date, time, and location with the seller/buyer to test drive the car. 
+•	In addition, after the test drive has been agreed upon, I would like a sharing function where I can share the location or even invite people to the test drive. 
