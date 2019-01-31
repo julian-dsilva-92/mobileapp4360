@@ -8,6 +8,7 @@ Team 8 App Idea
 				
 
 			
-•	I am a hairstylist who wants an app that can take pictures of my clients before and after I work with their hair and store those pictures under their profile.
+•	I am a hairstylist who wants an app that can create different profiles for each of my clients.
+• 	I want to be able to take pictures of my clients before and after I work with their hair and store those pictures under their profile.
 •	I want to be able to view, edit, and store notes of each pictures of my clients. 
 •	I want to be able to schedule appointments with my clients on the app. I would like a calendar view to see my upcoming appointments and available time slots. 
