@@ -8,4 +8,4 @@ User Story
 
 4. As a hairstylist, I want the calendar feature in the app to text my clients reminders about their upcoming appointment along with my previous appointments. (Harnoor)
 
-5. Arianna 
+5. As a hairstylist, I want to write comments about my clients likings and preferences so that I can best cater to their personalities. (Arianna)
