@@ -1,0 +1,11 @@
+User Story 
+
+1. As a hairstylist, I want to keep picture records of my clients' previous hairstyles and take notes about each picture  so that I can better serve my clients if they want to reuse their previous hairstyles. (Julian)
+
+2. As a hairstylist, I want to create an individual profile for each of my client so that I can better relate to my customer so I can cater to their specific needs. (Jenny) 
+
+3. Andres
+
+4. Harnoor 
+
+5. Arianna 
