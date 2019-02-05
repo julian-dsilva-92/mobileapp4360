@@ -4,7 +4,7 @@ User Story
 
 2. As a hairstylist, I want to create an individual profile for each of my client so that I can better relate to my customer and cater to their specific needs. (Jenny) 
 
-3. As a hairstlyist, I want my customer to be able to book an appoiment with me, so that I can know what to expect for the day.
+3. As a hairstlyist, I want my customer to be able to book an appoiment with me, so that I can know what to expect for the day.(Andres)
 
 4. Harnoor 
 
