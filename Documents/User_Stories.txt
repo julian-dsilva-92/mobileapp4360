@@ -6,6 +6,6 @@ User Story
 
 3. As a hairstlyist, I want my customer to be able to book an appoiment with me, so that I can know what to expect for the day.(Andres)
 
-4. Harnoor 
+4. As a hairstylist, I want the calendar feature in the app to text my clients reminders about their upcoming appointment along with my previous appointments. (Harnoor)
 
 5. Arianna 
