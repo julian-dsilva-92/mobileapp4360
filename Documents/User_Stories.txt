@@ -4,8 +4,36 @@ User Story
 
 2. As a hairstylist, I want to create an individual profile for each of my client so that I can better relate to my customer and cater to their specific needs. (Jenny) 
 
-3. As a hairstlyist, I want my customer to be able to book an appoiment with me, so that I can know what to expect for the day.(Andres)
+3. As a hairstlyist, I want my customer to be able to book an appoinments with me, so that I can know what to expect for the day.(Andres)
 
 4. As a hairstylist, I want the calendar feature in the app to text my clients reminders about their upcoming appointment along with my previous appointments. (Harnoor)
 
 5. As a hairstylist, I want to write comments about my clients likings and preferences so that I can best cater to their personalities. (Arianna)
+
+
+Customer;
+customer_id
+fname
+lname
+profile_pic
+notes
+haristylist_name
+phone_number (optional)
+email
+
+HairSylist:
+hairstyle_id
+haristylist_name
+customer_name
+phone_number (optional)
+
+Appointments:
+customer_id
+hairstylist_id
+date
+time
+
+
+Features:
+Appointments
+Archiving photos
