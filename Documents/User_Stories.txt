@@ -1,4 +1,6 @@
 User Story 
+Team 8 
+Harnoor, Andres, Julian, Jenny, Arianna 
 
 1. As a hairstylist, I want to keep picture records of my clients' previous hairstyles and take notes about each picture(product details) so that I can better serve my clients if they want to reuse their previous hairstyles.
 
