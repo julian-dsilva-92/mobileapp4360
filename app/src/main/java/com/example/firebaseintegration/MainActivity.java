@@ -36,21 +36,23 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
 
-    private DatabaseReference myRef;
     private static final int MULTIPLE_PERMISSIONS = 10; // code you want.
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
 
+    private DatabaseReference myRef;
+    private String currentPhotoPath;
 
-    String currentPhotoPath;
     private Button btnUploadData;
     private Button btnCamera;
+    private ImageView imgView;
     private List<Record> recordList;
     private RecyclerView recyclerView;
-    MyRecyclerViewAdapter adapter;
+    private MyRecyclerViewAdapter adapter;
 
-    private ImageView imgView;
-
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-
+    private String[] permissions = new String[]{
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA,
+            Manifest.permission.ACCESS_FINE_LOCATION};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +69,6 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(adapter);
 
-//        etFirstName = findViewById(R.id.etFirstName);
-//        etLastName = findViewById(R.id.etLastName);
         btnUploadData = findViewById(R.id.btnUploadData);
         btnCamera = findViewById(R.id.btnCamera);
         imgView = findViewById(R.id.imgView);
@@ -86,9 +86,6 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
                     recordList.add(record);
                     adapter.notifyDataSetChanged();
                 }
-
-//                Toast.makeText(getApplicationContext(), "updated: " + recordList.toString(), Toast.LENGTH_SHORT).show();
-                // set up the RecyclerView
             }
 
             @Override
@@ -140,7 +137,6 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         }
     }
 
-
     /**
      * returns unique file name and sotre it
      *
@@ -184,19 +180,9 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
 
             galleryAddPic();
 
-            Bitmap bm = BitmapFactory.decodeFile(currentPhotoPath);
-
-            //            Bundle extras = data.getExtras();
-//            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imgView.setImageBitmap(bm);
+            setPic();
         }
     }
-
-
-    String[] permissions = new String[]{
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.CAMERA,
-            Manifest.permission.ACCESS_FINE_LOCATION};
 
 
     private boolean checkPermissions() {
@@ -213,5 +199,29 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
             return false;
         }
         return true;
+    }
+
+    private void setPic() {
+        // Get the dimensions of the View
+        int targetW = imgView.getWidth();
+        int targetH = imgView.getHeight();
+
+        // Get the dimensions of the bitmap
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+
+        // Determine how much to scale down the image
+        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+        // Decode the image file into a Bitmap sized to fill the View
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+        bmOptions.inPurgeable = true;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
+        imgView.setImageBitmap(bitmap);
     }
 }
