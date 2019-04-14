@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -182,9 +183,12 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 
             galleryAddPic();
+
+            Bitmap bm = BitmapFactory.decodeFile(currentPhotoPath);
+
             //            Bundle extras = data.getExtras();
 //            Bitmap imageBitmap = (Bitmap) extras.get("data");
-//            imgView.setImageBitmap(imageBitmap);
+            imgView.setImageBitmap(bm);
         }
     }
 
