@@ -15,6 +15,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -34,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
+public class MainActivity extends AppCompatActivity /*implements MyRecyclerViewAdapter.ItemClickListener*/ {
 
     private static final int MULTIPLE_PERMISSIONS = 10; // code you want.
     private static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
     private ImageView imgView;
     private List<Record> recordList;
     private RecyclerView recyclerView;
-    private MyRecyclerViewAdapter adapter;
+//    private MyRecyclerViewAdapter adapter;
 
     private String[] permissions = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -65,9 +67,9 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
 
         recordList = new ArrayList<>();
         recyclerView = findViewById(R.id.rvRecords);
-        adapter = new MyRecyclerViewAdapter(getApplicationContext(), recordList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        recyclerView.setAdapter(adapter);
+//        adapter = new MyRecyclerViewAdapter(getApplicationContext(), recordList);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+//        recyclerView.setAdapter(adapter);
 
         btnUploadData = findViewById(R.id.btnUploadData);
         btnCamera = findViewById(R.id.btnCamera);
@@ -76,30 +78,36 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         myRef = FirebaseDatabase.getInstance().getReference("names");
 
         // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                recordList.clear();
-                // Result will be holded Here
-                for (DataSnapshot dsp : dataSnapshot.getChildren()) {
-                    Record record = dsp.getValue(Record.class);
-                    recordList.add(record);
-                    adapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("ERROR", "Failed to read value.", error.toException());
-            }
-        });
+//        myRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                recordList.clear();
+//                // Result will be holded Here
+//                for (DataSnapshot dsp : dataSnapshot.getChildren()) {
+//                    Record record = dsp.getValue(Record.class);
+//                    recordList.add(record);
+////                    adapter.notifyDataSetChanged();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError error) {
+//                // Failed to read value
+//                Log.w("ERROR", "Failed to read value.", error.toException());
+//            }
+//        });
 
 
         btnUploadData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                btnUploadDataAction(etFirstName.getText().toString(), etLastName.getText().toString());
+                Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
+
+                String base64Img = imgEncode(bitmap);
+
+                String id = myRef.push().getKey();
+                Record record = new Record(id, base64Img);
+                myRef.child(id).setValue(record);
             }
         });
 
@@ -168,10 +176,10 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
     }
 
 
-    @Override
-    public void onItemClick(View view, int position) {
-        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
-    }
+//    @Override
+//    public void onItemClick(View view, int position) {
+//        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+//    }
 
 
     @Override
@@ -214,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         int photoH = bmOptions.outHeight;
 
         // Determine how much to scale down the image
-        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+        int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
 
         // Decode the image file into a Bitmap sized to fill the View
         bmOptions.inJustDecodeBounds = false;
@@ -223,5 +231,16 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
 
         Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
         imgView.setImageBitmap(bitmap);
+    }
+
+    public String imgEncode(final Bitmap image) {
+        String encodedImage = "";
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+        byte[] b = baos.toByteArray();
+
+        encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+        return encodedImage;
     }
 }

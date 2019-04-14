@@ -3,15 +3,14 @@ package com.example.firebaseintegration;
 public class Record {
 
     private String id;
-    private String firstName;
+    private String encodedImage;
 
     public Record() {
     }
 
-    public Record(String id, String firstName, String lastName) {
+    public Record(String id, String encodedImage) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.encodedImage = encodedImage;
     }
 
     public String getId() {
@@ -22,21 +21,11 @@ public class Record {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getEncodedImage() {
+        return encodedImage;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setEncodedImage(String encodedImage) {
+        this.encodedImage = encodedImage;
     }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    private String lastName;
 }
