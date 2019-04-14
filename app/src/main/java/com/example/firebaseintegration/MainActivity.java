@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity /*implements MyRecyclerViewAdapter.ItemClickListener*/ {
+public class MainActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
 
     private static final int MULTIPLE_PERMISSIONS = 10; // code you want.
     private static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity /*implements MyRecyclerViewA
     private ImageView imgView;
     private List<Record> recordList;
     private RecyclerView recyclerView;
-//    private MyRecyclerViewAdapter adapter;
+    private MyRecyclerViewAdapter adapter;
 
     private String[] permissions = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -67,9 +67,9 @@ public class MainActivity extends AppCompatActivity /*implements MyRecyclerViewA
 
         recordList = new ArrayList<>();
         recyclerView = findViewById(R.id.rvRecords);
-//        adapter = new MyRecyclerViewAdapter(getApplicationContext(), recordList);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-//        recyclerView.setAdapter(adapter);
+        adapter = new MyRecyclerViewAdapter(getApplicationContext(), recordList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.setAdapter(adapter);
 
         btnUploadData = findViewById(R.id.btnUploadData);
         btnCamera = findViewById(R.id.btnCamera);
@@ -78,24 +78,24 @@ public class MainActivity extends AppCompatActivity /*implements MyRecyclerViewA
         myRef = FirebaseDatabase.getInstance().getReference("names");
 
         // Read from the database
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                recordList.clear();
-//                // Result will be holded Here
-//                for (DataSnapshot dsp : dataSnapshot.getChildren()) {
-//                    Record record = dsp.getValue(Record.class);
-//                    recordList.add(record);
-////                    adapter.notifyDataSetChanged();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//                Log.w("ERROR", "Failed to read value.", error.toException());
-//            }
-//        });
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                recordList.clear();
+                // Result will be holded Here
+                for (DataSnapshot dsp : dataSnapshot.getChildren()) {
+                    Record record = dsp.getValue(Record.class);
+                    recordList.add(record);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("ERROR", "Failed to read value.", error.toException());
+            }
+        });
 
 
         btnUploadData.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity /*implements MyRecyclerViewA
                 String base64Img = imgEncode(bitmap);
 
                 String id = myRef.push().getKey();
-                Record record = new Record(id, base64Img);
+                Record record = new Record(id, base64Img, "French Style", "Feb 29, 2019");
                 myRef.child(id).setValue(record);
             }
         });
@@ -176,10 +176,10 @@ public class MainActivity extends AppCompatActivity /*implements MyRecyclerViewA
     }
 
 
-//    @Override
-//    public void onItemClick(View view, int position) {
-//        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
-//    }
+    @Override
+    public void onItemClick(View view, int position) {
+        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+    }
 
 
     @Override

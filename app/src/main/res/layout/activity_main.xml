@@ -17,8 +17,8 @@
 
     <ImageView
         android:id="@+id/imgView"
-        android:layout_width="50000dp"
-        android:layout_height="500dp"
+        android:layout_width="500dp"
+        android:layout_height="150dp"
         android:layout_below="@+id/btnCamera"
 
         />
