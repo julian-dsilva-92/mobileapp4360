@@ -16,8 +16,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -46,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnUploadData;
     private Button btnCamera;
+    private EditText etImageInfo;
+
     private ImageView imgView;
 
     private static final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -69,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnUploadData = findViewById(R.id.btnUploadData);
         btnCamera = findViewById(R.id.btnCamera);
+        etImageInfo = findViewById(R.id.etImageInfo);
         imgView = findViewById(R.id.imgView);
 
         myRef = FirebaseDatabase.getInstance().getReference("names");
@@ -82,13 +88,10 @@ public class MainActivity extends AppCompatActivity {
 
                 String id = myRef.push().getKey();
 
-
                 LocalDate localDate = LocalDate.now();
-                String date = DateTimeFormatter.ofPattern("MM/yyyy/dd").format(localDate);
+                String curDate = DateTimeFormatter.ofPattern("MM/dd/yyyy").format(localDate);
 
-                Toast.makeText(MainActivity.this, "date=" + date, Toast.LENGTH_SHORT).show();
-
-                Record record = new Record(id, base64Img, "French Style", date);
+                Record record = new Record(id, base64Img, etImageInfo.getText().toString(), curDate);
                 myRef.child(id).setValue(record);
 
                 startActivity(new Intent(getApplicationContext(), ImagesActivity.class));
@@ -220,5 +223,23 @@ public class MainActivity extends AppCompatActivity {
 
         encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
         return encodedImage;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mymenu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // handle button activities
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.mybutton) {
+            startActivity(new Intent(getApplicationContext(), ImagesActivity.class));
+            // do something here
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

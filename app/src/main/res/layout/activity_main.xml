@@ -6,14 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <Button
         android:id="@+id/btnCamera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="Camera" />
-
 
     <ImageView
         android:id="@+id/imgView"
@@ -23,15 +21,30 @@
         android:layout_marginTop="-48dp"
         android:scaleType="fitCenter" />
 
-
-    <Button
-        android:id="@+id/btnUploadData"
+    <LinearLayout
+        android:id="@+id/ll1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imgView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="Upload Data" />
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <EditText
+            android:id="@+id/etImageInfo"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Notes"
+            android:inputType="text|textMultiLine"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnUploadData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>

@@ -36,7 +36,6 @@ public class ImagesActivity extends AppCompatActivity implements MyRecyclerViewA
         recyclerView = findViewById(R.id.rvRecords);
         adapter = new MyRecyclerViewAdapter(getApplicationContext(), recordList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 
