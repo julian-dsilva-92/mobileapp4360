@@ -8,7 +8,7 @@
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         card_view:cardBackgroundColor="@color/color_white"
         card_view:cardCornerRadius="10dp"
         card_view:cardElevation="5dp"
@@ -21,7 +21,7 @@
 
             <ImageView
                 android:id="@+id/imgRecycler"
-                android:layout_width="0dp"
+                android:layout_width="10dp"
                 android:layout_height="90dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"

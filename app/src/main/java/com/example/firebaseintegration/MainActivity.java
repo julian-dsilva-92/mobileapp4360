@@ -6,37 +6,37 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
+@RequiresApi(api = Build.VERSION_CODES.O)
+public class MainActivity extends AppCompatActivity {
 
     private static final int MULTIPLE_PERMISSIONS = 10; // code you want.
     private static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -47,9 +47,9 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
     private Button btnUploadData;
     private Button btnCamera;
     private ImageView imgView;
-    private List<Record> recordList;
-    private RecyclerView recyclerView;
-    private MyRecyclerViewAdapter adapter;
+
+    private static final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
     private String[] permissions = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -61,42 +61,17 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().setTitle("Add a New Style");
+
         if (checkPermissions()) {
             //  permissions  granted.
         }
-
-        recordList = new ArrayList<>();
-        recyclerView = findViewById(R.id.rvRecords);
-        adapter = new MyRecyclerViewAdapter(getApplicationContext(), recordList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        recyclerView.setAdapter(adapter);
 
         btnUploadData = findViewById(R.id.btnUploadData);
         btnCamera = findViewById(R.id.btnCamera);
         imgView = findViewById(R.id.imgView);
 
         myRef = FirebaseDatabase.getInstance().getReference("names");
-
-        // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                recordList.clear();
-                // Result will be holded Here
-                for (DataSnapshot dsp : dataSnapshot.getChildren()) {
-                    Record record = dsp.getValue(Record.class);
-                    recordList.add(record);
-                    adapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("ERROR", "Failed to read value.", error.toException());
-            }
-        });
-
 
         btnUploadData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,8 +81,17 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
                 String base64Img = imgEncode(bitmap);
 
                 String id = myRef.push().getKey();
-                Record record = new Record(id, base64Img, "French Style", "Feb 29, 2019");
+
+
+                LocalDate localDate = LocalDate.now();
+                String date = DateTimeFormatter.ofPattern("MM/yyyy/dd").format(localDate);
+
+                Toast.makeText(MainActivity.this, "date=" + date, Toast.LENGTH_SHORT).show();
+
+                Record record = new Record(id, base64Img, "French Style", date);
                 myRef.child(id).setValue(record);
+
+                startActivity(new Intent(getApplicationContext(), ImagesActivity.class));
             }
         });
 
@@ -173,12 +157,6 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         Uri contentUri = Uri.fromFile(f);
         mediaScanIntent.setData(contentUri);
         this.sendBroadcast(mediaScanIntent);
-    }
-
-
-    @Override
-    public void onItemClick(View view, int position) {
-        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
     }
 
 
