@@ -1,13 +1,17 @@
 package com.example.calendar_view;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.mobileapp.newappt.newAppt;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -23,8 +27,9 @@ public class MainCalendarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ApptDetails.apptArray=new ArrayList<ApptDetails>();
-        ApptDetails.apptArray.add( new ApptDetails("2019-04-07" ,"Test","haircut","this is holiday"));
-        ApptDetails.apptArray.add( new ApptDetails("2019-04-08" ,"Test","haircut","this is holiday"));
+        ApptDetails.apptArray.add(new ApptDetails( "07",  "05",  "2019",  10,  11,  "am",  "am", "Timmy Turner",  "Wants a fade"));
+        ApptDetails.apptArray.add(new ApptDetails( "07",  "05",  "2019",  11,  12,  "am",  "pm", "Timmy Johnson",  "Haircut"));
+        ApptDetails.apptArray.add(new ApptDetails( "08",  "05",  "2019",  10,  11,  "am",  "pm", "Tim John",  "Haircut with dye"));
 
 
 
@@ -40,15 +45,9 @@ public class MainCalendarActivity extends AppCompatActivity {
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cal_month.get(GregorianCalendar.MONTH) == 4&&cal_month.get(GregorianCalendar.YEAR)==2017) {
-                    //cal_month.set((cal_month.get(GregorianCalendar.YEAR) - 1), cal_month.getActualMaximum(GregorianCalendar.MONTH), 1);
-                    Toast.makeText(MainCalendarActivity.this, "Event Detail is available for current session only.", Toast.LENGTH_SHORT).show();
-                }
-                else {
+
                     setPreviousMonth();
                     refreshCalendar();
-                }
-
 
             }
         });
@@ -56,14 +55,8 @@ public class MainCalendarActivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cal_month.get(GregorianCalendar.MONTH) == 5&&cal_month.get(GregorianCalendar.YEAR)==2018) {
-                    //cal_month.set((cal_month.get(GregorianCalendar.YEAR) + 1), cal_month.getActualMinimum(GregorianCalendar.MONTH), 1);
-                    Toast.makeText(MainCalendarActivity.this, "Event Detail is available for current session only.", Toast.LENGTH_SHORT).show();
-                }
-                else {
                     setNextMonth();
                     refreshCalendar();
-                }
             }
         });
         GridView gridview = (GridView) findViewById(R.id.gv_calendar);
@@ -76,6 +69,15 @@ public class MainCalendarActivity extends AppCompatActivity {
             }
 
         });
+
+        Button yourButton = (Button) findViewById(R.id.apptButton);
+
+        yourButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(MainCalendarActivity.this, newAppt.class));
+            }
+        });
+
     }
     protected void setNextMonth() {
         if (cal_month.get(GregorianCalendar.MONTH) == cal_month.getActualMaximum(GregorianCalendar.MONTH)) {

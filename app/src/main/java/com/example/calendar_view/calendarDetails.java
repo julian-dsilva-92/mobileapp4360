@@ -3,8 +3,9 @@ package com.example.calendar_view;
 public class calendarDetails {
 
     private String client;
-    private String apptType;
+    private String apptTime;
     private String apptnotes;
+
 
 
     public String getClient() {
@@ -15,12 +16,12 @@ public class calendarDetails {
         this.client = client;
     }
 
-    public String getApptType() {
-        return apptType;
+    public String getApptTime() {
+        return apptTime;
     }
 
-    public void setApptType(String apptType) {
-        this.apptType = apptType;
+    public void setApptTime(String apptTime) {
+        this.apptTime = apptTime;
     }
 
     public String getApptnotes() {

@@ -19,6 +19,7 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -90,9 +91,11 @@ public class eventAdapter extends BaseAdapter {
 
         dayView = (TextView) v.findViewById(R.id.date);
         String[] separatedTime = day_string.get(position).split("-");
+        System.out.print(Arrays.toString(separatedTime));
 
 
         gridvalue = separatedTime[2].replaceFirst("^0*", "");
+        System.out.print(gridvalue);
         if ((Integer.parseInt(gridvalue) > 1) && (position < firstDay)) {
             dayView.setTextColor(Color.parseColor("#A9A9A9"));
             dayView.setClickable(false);
@@ -191,7 +194,13 @@ public class eventAdapter extends BaseAdapter {
         int len = ApptDetails.apptArray.size();
         for (int i = 0; i < len; i++) {
             ApptDetails cal_obj = ApptDetails.apptArray.get(i);
-            String date = cal_obj.getApptDate();
+           String date = cal_obj.getApptDate();
+
+
+
+           System.out.println("Date string is " + date);
+           System.out.println("Day string is " + day_string);
+
             int len1 = day_string.size();
             if (len1 > pos) {
 
@@ -220,7 +229,7 @@ public class eventAdapter extends BaseAdapter {
             if (ApptDetails.apptArray.get(j).getApptDate().equals(date)){
                 HashMap<String, String> maplist = new HashMap<String, String>();
                 maplist.put("cnames",ApptDetails.apptArray.get(j).getClientName());
-                maplist.put("appttype",ApptDetails.apptArray.get(j).getApptType());
+                maplist.put("appttime",ApptDetails.apptArray.get(j).getApptTime());
                 maplist.put("notes",ApptDetails.apptArray.get(j).getApptNotes());
                 JSONObject json1 = new JSONObject(maplist);
                 jbarrays.put(json1);
@@ -255,7 +264,7 @@ public class eventAdapter extends BaseAdapter {
                 calendarDetails details = new calendarDetails();
 
                 details.setClient(jsonObject.optString("cnames"));
-                details.setApptType(jsonObject.optString("appttype"));
+                details.setApptTime(jsonObject.optString("appttime"));
                 details.setApptnotes(jsonObject.optString("notes"));
 
                 alCustom.add(details);

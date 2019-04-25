@@ -87,6 +87,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="S"
+                android:textSize="20dp"
                 android:textColor="#4b4a4a" />
 
             <TextView
@@ -96,6 +97,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="M"
+                android:textSize="20dp"
                 android:textColor="#4b4a4a" />
 
             <TextView
@@ -105,6 +107,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="T"
+                android:textSize="20dp"
                 android:textColor="#4b4a4a" />
 
             <TextView
@@ -114,6 +117,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="W"
+                android:textSize="20dp"
                 android:textColor="#4b4a4a" />
 
             <TextView
@@ -123,6 +127,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="T"
+                android:textSize="20dp"
                 android:textColor="#4b4a4a" />
 
             <TextView
@@ -132,6 +137,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="F"
+                android:textSize="20dp"
                 android:textColor="#4b4a4a" />
 
             <TextView
@@ -141,6 +147,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="S"
+                android:textSize="20dp"
                 android:textColor="#4b4a4a" />
 
         </TableRow>
@@ -155,7 +162,7 @@
         <GridView
             android:id="@+id/gv_calendar"
             android:layout_width="match_parent"
-            android:layout_height="282dp"
+            android:layout_height="596dp"
             android:background="#ffffff"
             android:cacheColorHint="#ffffff"
             android:gravity="center"
@@ -171,11 +178,26 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="141dp"
+        android:layout_height="140dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="2dp">
 
 
+        <Button
+            android:id="@+id/apptButton"
+            android:layout_width="140dp"
+            android:layout_height="66dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="138dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="133dp"
+            android:layout_marginBottom="24dp"
+            android:text="New Appointment" />
     </RelativeLayout>
 
 </RelativeLayout>

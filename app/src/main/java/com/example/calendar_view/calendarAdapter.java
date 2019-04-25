@@ -50,12 +50,12 @@ public class calendarAdapter extends BaseAdapter{
         View listViewItem = inflater.inflate(R.layout.row_addapt, null, true);
 
         TextView client=(TextView)listViewItem.findViewById(R.id.tv_name);
-        TextView apptType=(TextView)listViewItem.findViewById(R.id.tv_type);
+        TextView apptTime=(TextView)listViewItem.findViewById(R.id.tv_type);
         TextView notes=(TextView)listViewItem.findViewById(R.id.tv_class);
 
 
         client.setText("Name : "+alCustom.get(position).getClient());
-        apptType.setText("Appointment Type : "+alCustom.get(position).getApptType());
+        apptTime.setText("Appointment Time : "+alCustom.get(position).getApptTime());
         notes.setText("Notes: "+alCustom.get(position).getApptnotes());
 
         return  listViewItem;
