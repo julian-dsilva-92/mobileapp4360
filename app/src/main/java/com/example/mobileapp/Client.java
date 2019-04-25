@@ -6,18 +6,18 @@ public class Client {
     private String lastName;
     private String description;
     private String phoneNumber;
-    //private String profilePhoto;
+    private String encodedImage;
 
     public Client(){
 
     }
 
-    public Client(String firstName, String lastName, String description, String phoneNumber){
+    public Client(String firstName, String lastName, String description, String phoneNumber, String encodedImage){
         this.firstName = firstName;
         this.lastName = lastName;
         this.description = description;
         this.phoneNumber = phoneNumber;
-        //this.profilePhoto = profilePhoto;
+        this.encodedImage = encodedImage;
     }
 
     public void setFirstName(String firstName){
@@ -51,11 +51,17 @@ public class Client {
         return phoneNumber;
     }
 
-//    public void setProfilePhoto(String profilePhoto){
-//        this.profilePhoto = profilePhoto;
-//    }
-//
-//    public String getProfilePhoto(){
-//        return profilePhoto;
-//    }
+    public String getEncodedImage(){
+        return encodedImage;
+    }
+
+    public void setEncodedImage(String encodedImage){
+        this.encodedImage = encodedImage;
+    }
+
+
+
+
+
+
 }
