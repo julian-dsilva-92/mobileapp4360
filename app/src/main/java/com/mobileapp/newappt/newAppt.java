@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,19 @@ import java.util.Calendar;
 import java.util.List;
 
 public class newAppt extends AppCompatActivity {
+
+
+    private String setname;
+    private String setphone;
+    private String setday;
+    private String setmonth;
+    private  String setyear;
+    private int setstartTime;
+    private int setendTime;
+    private String setstartTimeamPm;
+    private String setendTimeamPm;
+    private String setnotes;
+    private int StylistKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +121,7 @@ public class newAppt extends AppCompatActivity {
                             (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
                             .show();
                 }
+                setyear = selectedItemText;
             }
 
             @Override
@@ -162,6 +177,7 @@ public class newAppt extends AppCompatActivity {
                             (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
                             .show();
                 }
+                setmonth = selectedItemText;
             }
 
             @Override
@@ -218,6 +234,7 @@ public class newAppt extends AppCompatActivity {
                             (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
                             .show();
                 }
+                setday  = selectedItemText;
             }
 
             @Override
@@ -272,6 +289,7 @@ public class newAppt extends AppCompatActivity {
                     Toast.makeText
                             (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
                             .show();
+                    setstartTime = Integer.parseInt(selectedItemText);
                 }
             }
 
@@ -328,7 +346,11 @@ public class newAppt extends AppCompatActivity {
                     Toast.makeText
                             (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
                             .show();
+
+                    setendTime = Integer.parseInt(selectedItemText);
                 }
+
+
             }
 
             @Override
@@ -385,6 +407,7 @@ public class newAppt extends AppCompatActivity {
                             (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
                             .show();
                 }
+                setstartTimeamPm = selectedItemText;
             }
 
             @Override
@@ -441,6 +464,7 @@ public class newAppt extends AppCompatActivity {
                             (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
                             .show();
                 }
+                setendTimeamPm = selectedItemText;
             }
 
             @Override
@@ -456,6 +480,33 @@ public class newAppt extends AppCompatActivity {
         Intent intent = new Intent(this, MainCalendarActivity.class);
         startActivity(intent);
     }
+
+
+
+public void sendNewApptQuery(View v){
+    EditText nametxt = findViewById(R.id.editText);
+    EditText phone = findViewById(R.id.editText2);
+    EditText apptnotes = findViewById(R.id.editText5);
+
+    setname = nametxt.getText().toString();
+    setphone = phone.getText().toString();
+    setnotes = apptnotes.getText().toString();
+    StylistKey = 6;
+
+
+    ApptSet newAppt = new ApptSet(setday,setmonth,setyear,setstartTime,setendTime,setstartTimeamPm,setendTimeamPm,setname,setphone,setnotes,StylistKey );
+
+
+
+    }
+
+
+
+
+
+
+
+
 }
 
 

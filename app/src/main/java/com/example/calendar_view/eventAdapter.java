@@ -91,11 +91,9 @@ public class eventAdapter extends BaseAdapter {
 
         dayView = (TextView) v.findViewById(R.id.date);
         String[] separatedTime = day_string.get(position).split("-");
-        System.out.print(Arrays.toString(separatedTime));
 
 
         gridvalue = separatedTime[2].replaceFirst("^0*", "");
-        System.out.print(gridvalue);
         if ((Integer.parseInt(gridvalue) > 1) && (position < firstDay)) {
             dayView.setTextColor(Color.parseColor("#A9A9A9"));
             dayView.setClickable(false);
@@ -195,11 +193,6 @@ public class eventAdapter extends BaseAdapter {
         for (int i = 0; i < len; i++) {
             ApptDetails cal_obj = ApptDetails.apptArray.get(i);
            String date = cal_obj.getApptDate();
-
-
-
-           System.out.println("Date string is " + date);
-           System.out.println("Day string is " + day_string);
 
             int len1 = day_string.size();
             if (len1 > pos) {
