@@ -1,7 +1,9 @@
 package com.mobileapp.newappt;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,9 +15,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.com.mobileapp.dB.dBInitialize;
+
 
 import com.example.calendar_view.MainCalendarActivity;
 import com.example.calendar_view.R;
+import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +31,7 @@ public class newAppt extends AppCompatActivity {
 
 
     private String setname;
-    private String setphone;
+    public static String setphone;
     private String setday;
     private String setmonth;
     private  String setyear;
@@ -35,7 +40,8 @@ public class newAppt extends AppCompatActivity {
     private String setstartTimeamPm;
     private String setendTimeamPm;
     private String setnotes;
-    private int StylistKey;
+    private String StylistKey;
+    private String customerKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -482,7 +488,6 @@ public class newAppt extends AppCompatActivity {
     }
 
 
-
 public void sendNewApptQuery(View v){
     EditText nametxt = findViewById(R.id.editText);
     EditText phone = findViewById(R.id.editText2);
@@ -491,11 +496,16 @@ public void sendNewApptQuery(View v){
     setname = nametxt.getText().toString();
     setphone = phone.getText().toString();
     setnotes = apptnotes.getText().toString();
-    StylistKey = 6;
+    StylistKey = "6"; //passed from login
+    //customerKey = dBInitialize.custKey;
 
 
-    ApptSet newAppt = new ApptSet(setday,setmonth,setyear,setstartTime,setendTime,setstartTimeamPm,setendTimeamPm,setname,setphone,setnotes,StylistKey );
+    dBInitialize newAppointmentQuery = new dBInitialize();
+    newAppointmentQuery.phoneexists();
+    newAppointmentQuery.getCustomerName("customer1");
 
+
+   // newAppointmentQuery.setAppointment(setday,setmonth,setyear,setstartTime,setendTime,setstartTimeamPm,setendTimeamPm,customerKey,setnotes,StylistKey);
 
 
     }

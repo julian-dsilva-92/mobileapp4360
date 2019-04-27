@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "809904178452",
+    "firebase_url": "https://hairstyleapp-6c32b.firebaseio.com",
+    "project_id": "hairstyleapp-6c32b",
+    "storage_bucket": "hairstyleapp-6c32b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809904178452:android:c6a1847451debba2",
+        "android_client_info": {
+          "package_name": "com.example.mobileapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809904178452-r3dhah70svqb7npd119hos4h3ram2lv2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mobileapp",
+            "certificate_hash": "75b2749fb1556bd918b8dd8d0ee4e4612ead63d5"
+          }
+        },
+        {
+          "client_id": "809904178452-5phmhbolcr9q3p8cgkj08trevq5cvc4m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyxNYza6Yv8RCxn4l2v98D1sKM2KL6SdA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809904178452-5phmhbolcr9q3p8cgkj08trevq5cvc4m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "809904178452-3m9vuq5dnd99f7cl98hpg1fkm03paq6p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.mobileapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

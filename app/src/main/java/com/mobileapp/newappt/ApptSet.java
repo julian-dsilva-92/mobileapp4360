@@ -8,12 +8,12 @@ public class ApptSet {
     private int endTime;
     private String amPmstart;
     private String amPmend;
-    private String newApptname;
+    private String customerID;
     private String phone;
     private String notes;
-    private int stylistKey;
+    private String stylistKey;
 
-    public ApptSet(String day, String month, String year, int startTime, int endTime, String amPmstart, String amPmend, String name, String phone, String notes, int Stylistskey) {
+    public ApptSet(String day, String month, String year, int startTime, int endTime, String amPmstart, String amPmend, String customerID,  String notes, String Stylistskey) {
         this.day = day;
         this.month = month;
         this.year = year;
@@ -22,7 +22,7 @@ public class ApptSet {
         this.amPmstart = amPmstart;
         this.amPmend = amPmend;
         this.notes = notes;
-        this.newApptname = name;
+        this.customerID = customerID;
         this.phone = phone;
         this.stylistKey = Stylistskey;
     }
@@ -36,11 +36,11 @@ public class ApptSet {
         this.notes = notes;
     }
 
-    public int getStylistKey() {
+    public String getStylistKey() {
         return stylistKey;
     }
 
-    public void setStylistKey(int stylistKey) {
+    public void setStylistKey(String stylistKey) {
         this.stylistKey = stylistKey;
     }
 
@@ -100,12 +100,12 @@ public class ApptSet {
         this.amPmend = amPmend;
     }
 
-    public String getNewApptname() {
-        return newApptname;
+    public String getCustomerID() {
+        return customerID;
     }
 
-    public void setNewApptname(String newApptname) {
-        this.newApptname = newApptname;
+    public void setCustomerID(String newApptname) {
+        this.customerID = newApptname;
     }
 
     public String getPhone() {
