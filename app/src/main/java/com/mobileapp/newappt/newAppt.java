@@ -1,15 +1,16 @@
 package com.mobileapp.newappt;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,17 +21,20 @@ import com.com.mobileapp.dB.dBInitialize;
 
 import com.example.calendar_view.MainCalendarActivity;
 import com.example.calendar_view.R;
-import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
+
 
 public class newAppt extends AppCompatActivity {
 
 
-    private String setname;
     public static String setphone;
     private String setday;
     private String setmonth;
@@ -42,11 +46,16 @@ public class newAppt extends AppCompatActivity {
     private String setnotes;
     private String StylistKey;
     private String customerKey;
+    private String fname, lname;
+    private String customerName = "";
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
 
         String[] year = new String[]{
                 "Year",
@@ -77,6 +86,74 @@ public class newAppt extends AppCompatActivity {
         String [] am_pm = new String[]{
                 "AM/PM", "AM", "PM"
         };
+
+
+
+                final EditText phone = findViewById(R.id.editText2);
+                final TextView displayCustomer = findViewById(R.id.textView3);
+
+                phone.addTextChangedListener(new TextWatcher() {
+
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (s.length() == 12) {
+
+                                setphone = phone.getText().toString();
+
+                            new dBInitialize().getCustomerkey(new dBInitialize.KeyCallback() {
+
+                                @Override
+                                public void onKeyCallback(String value) {
+                                    Button newCustomer = findViewById(R.id.button3);
+
+                                    if (value.isEmpty()){
+
+                                        displayCustomer.setText("Customer not found");
+                                        newCustomer.setText("New Customer");
+
+                                        newCustomer.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                //new customer intent starts here
+
+                                            }
+                                        });
+
+
+                                    }
+                                    else {
+                                        newCustomer.setText("Create Appointment");
+
+                                        getCustomerName(value);
+
+                                    }
+
+
+                                }
+                            });
+
+
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+
+
+
 
 
 
@@ -488,24 +565,57 @@ public class newAppt extends AppCompatActivity {
     }
 
 
-public void sendNewApptQuery(View v){
-    EditText nametxt = findViewById(R.id.editText);
-    EditText phone = findViewById(R.id.editText2);
-    EditText apptnotes = findViewById(R.id.editText5);
 
-    setname = nametxt.getText().toString();
-    setphone = phone.getText().toString();
-    setnotes = apptnotes.getText().toString();
+
+    public void getCustomerName( String Key) {
+        final TextView displayCustomer = findViewById(R.id.textView3);
+
+        DatabaseReference ref = database.getReference("customers/" + Key);
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                fname = dataSnapshot.child("firstName").getValue(String.class);
+                lname = dataSnapshot.child("lastName").getValue(String.class);
+
+                customerName = fname + " " + lname;
+                displayCustomer.setText(customerName);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+
+
+        });
+
+        sendNewApptQuery(Key);
+    }
+
+
+public void sendNewApptQuery(String custKey){
+
+
     StylistKey = "6"; //passed from login
-    //customerKey = dBInitialize.custKey;
+    customerKey = custKey;
 
+    Button newCustomer = findViewById(R.id.button3);
+newCustomer.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        EditText apptnotes = findViewById(R.id.editText5);
+        setnotes = apptnotes.getText().toString();
 
-    dBInitialize newAppointmentQuery = new dBInitialize();
-    newAppointmentQuery.phoneexists();
-    newAppointmentQuery.getCustomerName("customer1");
+        dBInitialize newAppointmentQuery = new dBInitialize();
 
+            //creates a new appointment
+         newAppointmentQuery.setAppointment(setday,setmonth,setyear,setstartTime,setendTime,setstartTimeamPm,setendTimeamPm,customerKey,setnotes,StylistKey);
 
-   // newAppointmentQuery.setAppointment(setday,setmonth,setyear,setstartTime,setendTime,setstartTimeamPm,setendTimeamPm,customerKey,setnotes,StylistKey);
+    }
+});
 
 
     }

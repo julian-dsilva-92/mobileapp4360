@@ -2,8 +2,6 @@ package com.com.mobileapp.dB;
 
 
 
-import android.support.annotation.NonNull;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -12,17 +10,16 @@ import com.google.firebase.database.ValueEventListener;
 import com.mobileapp.newappt.ApptSet;
 import com.mobileapp.newappt.newAppt;
 
-import java.util.HashMap;
-import java.util.Map;
-
 
 public class dBInitialize {
+
+
     public String keys = "";
-    public static String custKey;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
+    //sets the appointment
     public void setAppointment(String day, String month, String year, int startTime, int endTime, String amPmstart, String amPmend, String customerID, String notes, String Stylistskey) {
 
         DatabaseReference appointmentRef = database.getReference("appointments");
@@ -30,71 +27,36 @@ public class dBInitialize {
     }
 
 
-    public void phoneexists() {
-        getCustomerkey(new MyCallback() {
-            @Override
-            public void onCallback(String value) {
-                custKey = value;
+    //returns customer key to attach to a new appointment and name validation
+        public void getCustomerkey ( final KeyCallback myCallback){
+            DatabaseReference ref = database.getReference("customers");
+            ref.orderByChild("phone").equalTo(newAppt.setphone).addValueEventListener(new ValueEventListener() {
 
-            }
-        });
-
-    }
-
-    public boolean customerExists() {
-
-        if (custKey != null) {
-            return true;
-
-        } else
-            custKey = "";
-        return false;
-    }
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists())
+                        for (DataSnapshot datas : dataSnapshot.getChildren()) {
+                            keys = datas.getKey();
+                        }
 
 
-    public void getCustomerName(String customerKey){
-        DatabaseReference ref=database.getReference("customers");
-        ref.child(customerKey).addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Map<String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
-                    String module = map.get("firstName").toString();
-                    String room = map.get("lastName").toString();
-                    System.out.println(module + " " + room);
+                    myCallback.onKeyCallback(keys);
                 }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-}
-
-    public void getCustomerkey(final MyCallback myCallback) {
-        DatabaseReference ref=database.getReference("customers");
-        ref.orderByChild("phone").equalTo(newAppt.setphone).addValueEventListener(new ValueEventListener(){
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot datas: dataSnapshot.getChildren()){
-                    keys=datas.getKey();
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
                 }
-                myCallback.onCallback(keys);
-            }
+            });
+        }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        });
+
+        public interface KeyCallback {
+            void onKeyCallback(String value);
+
+        }
+
+
     }
-
-
-    public interface MyCallback {
-        void onCallback(String value);
-    }
-
 
 
 /*
@@ -120,6 +82,6 @@ public class dBInitialize {
 
 
 
-    }
+
 
 
