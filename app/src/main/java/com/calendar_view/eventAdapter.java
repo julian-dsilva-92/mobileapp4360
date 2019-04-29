@@ -1,4 +1,4 @@
-package com.example.calendar_view;
+package com.calendar_view;
 
 import android.app.Activity;
 import android.app.Dialog;

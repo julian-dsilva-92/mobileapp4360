@@ -1,4 +1,4 @@
-package com.mobileapp.newappt;
+package com.com.mobileapp.dB;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.com.mobileapp.dB.dBInitialize;
 
 
-import com.example.calendar_view.MainCalendarActivity;
+import com.calendar_view.MainCalendarActivity;
 import com.example.mobileapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

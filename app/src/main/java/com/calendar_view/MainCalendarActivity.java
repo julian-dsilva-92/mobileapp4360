@@ -1,4 +1,4 @@
-package com.example.calendar_view;
+package com.calendar_view;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,13 +11,13 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.com.mobileapp.dB.newAppt;
 import com.example.mobileapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.mobileapp.newappt.newAppt;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -119,7 +119,7 @@ public class MainCalendarActivity extends AppCompatActivity {
 
         yourButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                startActivity(new Intent(getApplicationContext(), com.mobileapp.newappt.newAppt.class));
+                startActivity(new Intent(getApplicationContext(), newAppt.class));
             }
         });
 

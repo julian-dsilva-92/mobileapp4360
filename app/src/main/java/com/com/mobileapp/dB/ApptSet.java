@@ -1,4 +1,4 @@
-package com.mobileapp.newappt;
+package com.com.mobileapp.dB;
 
 public class ApptSet {
     private String day;

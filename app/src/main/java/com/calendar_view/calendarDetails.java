@@ -1,4 +1,4 @@
-package com.example.calendar_view;
+package com.calendar_view;
 
 public class calendarDetails {
 

@@ -1,4 +1,4 @@
-package com.example.calendar_view;
+package com.calendar_view;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
