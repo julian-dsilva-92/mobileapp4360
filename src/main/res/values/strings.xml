@@ -15,5 +15,4 @@
     <string name="title_activity_new_user">NewUser</string>
     <string name="title_activity_new_client">NewClient</string>
     <string name="title_activity_login">Login</string>
-
 </resources>
