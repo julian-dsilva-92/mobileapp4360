@@ -1,4 +1,4 @@
-package com.calendar_view;
+package com.com.mobileapp.camera;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.mobileapp.R;
 
 import java.util.List;
 

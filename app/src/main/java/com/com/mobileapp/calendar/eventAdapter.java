@@ -1,4 +1,4 @@
-package com.calendar_view;
+package com.com.mobileapp.calendar;
 
 import android.app.Activity;
 import android.app.Dialog;

@@ -1,4 +1,4 @@
-package com.com.mobileapp.dB;
+package com.com.mobileapp.calendar;
 
 public class ApptSet {
     private String day;

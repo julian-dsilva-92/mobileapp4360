@@ -1,4 +1,4 @@
-package com.com.mobileapp.dB;
+package com.com.mobileapp.calendar;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,10 +16,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.com.mobileapp.dB.dBInitialize;
-
-
-import com.calendar_view.MainCalendarActivity;
 import com.example.mobileapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

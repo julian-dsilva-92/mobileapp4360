@@ -1,4 +1,4 @@
-package com.calendar_view;
+package com.com.mobileapp.camera;
 
 import android.Manifest;
 import android.content.Intent;

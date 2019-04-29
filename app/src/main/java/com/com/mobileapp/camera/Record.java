@@ -1,4 +1,4 @@
-package com.calendar_view;
+package com.com.mobileapp.camera;
 
 public class Record {
 
