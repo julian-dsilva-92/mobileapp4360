@@ -40,7 +40,7 @@ public class ImagesActivity extends AppCompatActivity implements MyRecyclerViewA
         recyclerView.setAdapter(adapter);
 
 
-        myRef = FirebaseDatabase.getInstance().getReference("names");
+        myRef = FirebaseDatabase.getInstance().getReference("hairstyles");
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {

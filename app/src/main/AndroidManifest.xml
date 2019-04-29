@@ -24,14 +24,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".camera.ImagesActivity"></activity>
 
         <activity android:name=".calendar.newAppt" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.firebaseintegration.fileprovider"
+            android:authorities="com.example.mobileapp.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -40,7 +39,6 @@
         </provider>
 
         <activity android:name=".camera.CameraActivity">
-
 
         </activity>
     </application>
