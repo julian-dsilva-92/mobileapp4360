@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.mobileapp.R;
+
 import java.util.ArrayList;
 
 public class calendarAdapter extends BaseAdapter{

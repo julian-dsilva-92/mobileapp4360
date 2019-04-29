@@ -11,6 +11,7 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.mobileapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -118,7 +119,7 @@ public class MainCalendarActivity extends AppCompatActivity {
 
         yourButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                startActivity(new Intent(MainCalendarActivity.this, newAppt.class));
+                startActivity(new Intent(getApplicationContext(), com.mobileapp.newappt.newAppt.class));
             }
         });
 

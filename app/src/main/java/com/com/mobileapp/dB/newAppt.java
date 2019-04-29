@@ -20,7 +20,7 @@ import com.com.mobileapp.dB.dBInitialize;
 
 
 import com.example.calendar_view.MainCalendarActivity;
-import com.example.calendar_view.R;
+import com.example.mobileapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

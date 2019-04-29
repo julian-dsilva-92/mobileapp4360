@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CameraActivity">
+
+    <Button
+        android:id="@+id/btnCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Camera" />
+
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="500dp"
+        android:layout_height="590dp"
+        android:layout_below="@+id/btnCamera"
+        android:layout_marginTop="-48dp"
+        android:scaleType="fitCenter" />
+
+    <LinearLayout
+        android:id="@+id/ll1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgView"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <EditText
+            android:id="@+id/etImageInfo"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Notes"
+            android:inputType="text|textMultiLine"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnUploadData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
