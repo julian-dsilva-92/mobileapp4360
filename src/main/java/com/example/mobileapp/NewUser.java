@@ -11,9 +11,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class NewUser extends AppCompatActivity {
 
     private EditText firstName, lastName, phone, email, pass1, pass2;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +41,24 @@ public class NewUser extends AppCompatActivity {
             public void onClick(View view) {
                 String password1 = pass1.getText().toString();
                 String password2 = pass2.getText().toString();
-                if(pass1.equals(pass2)){
-                    Intent mainIntent = new Intent(NewUser.this, dashboard.class);
+                if(password1.equals(password2)){
+                    Intent mainIntent = new Intent(NewUser.this, LoginActivity.class);
                     startActivity(mainIntent);
+
+                    String fname = firstName.getText().toString();
+                    String lname = lastName.getText().toString();
+                    String cellPhone = phone.getText().toString();
+                    String userEmail = email.getText().toString();
+                    String pass = pass1.getText().toString();
+
+                    DatabaseReference appointmentRef = database.getReference("hairstylists");
+                    appointmentRef.push().setValue(new setUser(fname, lname, cellPhone, userEmail, pass));
                 }else{
                     Toast.makeText(NewUser.this, "Passwords do not match", Toast.LENGTH_LONG).show();
                 }
             }
         });
-
-
     }
 
 }
+

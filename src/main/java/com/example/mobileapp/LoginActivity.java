@@ -48,8 +48,8 @@ public class LoginActivity extends AppCompatActivity{
             public void onClick(View view) {
                 String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();
-                if(email.equals("abc@acd.com") && password.equals("123asd")){
-                    Intent mainIntent = new Intent(LoginActivity.this, dashboard.class);
+                if(email.equals("abd@gmail.com") && password.equals("test")){
+                    Intent mainIntent = new Intent(LoginActivity.this, NewUser.class);
                     startActivity(mainIntent);
                 }else{
                     Toast.makeText(LoginActivity.this, "Name or Password is incorrect", Toast.LENGTH_LONG).show();
