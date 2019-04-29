@@ -39,7 +39,7 @@ import java.util.Date;
 import java.util.List;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
-public class MainActivity extends AppCompatActivity {
+public class CameraActivity extends AppCompatActivity {
 
     private static final int MULTIPLE_PERMISSIONS = 10; // code you want.
     private static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_camera);
 
         getSupportActionBar().setTitle("Add a New Style");
 
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Take Picture Tapped", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CameraActivity.this, "Take Picture Tapped", Toast.LENGTH_SHORT).show();
                 dispatchTakePictureIntent();
             }
         });
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         int result;
         List<String> listPermissionsNeeded = new ArrayList<>();
         for (String p : permissions) {
-            result = ContextCompat.checkSelfPermission(MainActivity.this, p);
+            result = ContextCompat.checkSelfPermission(CameraActivity.this, p);
             if (result != PackageManager.PERMISSION_GRANTED) {
                 listPermissionsNeeded.add(p);
             }
