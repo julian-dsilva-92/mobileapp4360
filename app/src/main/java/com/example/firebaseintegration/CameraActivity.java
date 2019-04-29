@@ -77,7 +77,7 @@ public class CameraActivity extends AppCompatActivity {
         etImageInfo = findViewById(R.id.etImageInfo);
         imgView = findViewById(R.id.imgView);
 
-        myRef = FirebaseDatabase.getInstance().getReference("names");
+        myRef = FirebaseDatabase.getInstance().getReference("hairstyles");
 
         btnUploadData.setOnClickListener(new View.OnClickListener() {
             @Override
