@@ -17,14 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.com.mobileapp.calendar.MainCalendarActivity">
+        <activity android:name=".calendar.MainCalendarActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
+        <activity android:name=".camera.ImagesActivity"></activity>
 
-        <activity android:name="com.com.mobileapp.dB.dBInitialize$ImagesActivity"></activity>
-
-        <activity android:name="com.com.mobileapp.calendar.newAppt" />
+        <activity android:name=".calendar.newAppt" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -36,12 +39,8 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name="com.com.mobileapp.dB.dBInitialize$CameraActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".camera.CameraActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
     </application>
