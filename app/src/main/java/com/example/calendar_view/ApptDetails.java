@@ -8,15 +8,15 @@ public class ApptDetails {
     private String apptYear;
     private String clientName;
     private String apptNotes;
-    private int apptStarttime;
-    private int apptEndtime;
+    private String apptStarttime;
+    private String apptEndtime;
     private String StartAmPm;
     private String EndAmPm;
 
 
     public static ArrayList<ApptDetails> apptArray;
 
-    public ApptDetails(String day, String month, String year, int start, int end, String startampm, String endampm,  String name, String notes){
+    public ApptDetails(String day, String month, String year, String start, String end, String startampm, String endampm,  String name, String notes){
 
         this.apptDay=day;
         this.apptMonth = month;
@@ -71,19 +71,19 @@ public class ApptDetails {
         this.apptNotes = apptNotes;
     }
 
-    public int getApptStarttime() {
+    public String getApptStarttime() {
         return apptStarttime;
     }
 
-    public void setApptStarttime(int apptStarttime) {
+    public void setApptStarttime(String apptStarttime) {
         this.apptStarttime = apptStarttime;
     }
 
-    public int getApptEndtime() {
+    public String getApptEndtime() {
         return apptEndtime;
     }
 
-    public void setApptEndtime(int apptEndtime) {
+    public void setApptEndtime(String apptEndtime) {
         this.apptEndtime = apptEndtime;
     }
 

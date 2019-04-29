@@ -39,8 +39,8 @@ public class newAppt extends AppCompatActivity {
     private String setday;
     private String setmonth;
     private  String setyear;
-    private int setstartTime;
-    private int setendTime;
+    private String setstartTime;
+    private String setendTime;
     private String setstartTimeamPm;
     private String setendTimeamPm;
     private String setnotes;
@@ -54,7 +54,7 @@ public class newAppt extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.appointmentactivity);
 
 
         String[] year = new String[]{
@@ -372,7 +372,7 @@ public class newAppt extends AppCompatActivity {
                     Toast.makeText
                             (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
                             .show();
-                    setstartTime = Integer.parseInt(selectedItemText);
+                    setstartTime = selectedItemText;
                 }
             }
 
@@ -430,7 +430,7 @@ public class newAppt extends AppCompatActivity {
                             (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
                             .show();
 
-                    setendTime = Integer.parseInt(selectedItemText);
+                    setendTime = selectedItemText;
                 }
 
 
@@ -612,7 +612,7 @@ newCustomer.setOnClickListener(new View.OnClickListener() {
         dBInitialize newAppointmentQuery = new dBInitialize();
 
             //creates a new appointment
-         newAppointmentQuery.setAppointment(setday,setmonth,setyear,setstartTime,setendTime,setstartTimeamPm,setendTimeamPm,customerKey,setnotes,StylistKey);
+         newAppointmentQuery.setAppointment(setday,setmonth,setyear,setstartTime,setendTime,setstartTimeamPm,setendTimeamPm,customerKey,setnotes,StylistKey, setphone);
 
     }
 });

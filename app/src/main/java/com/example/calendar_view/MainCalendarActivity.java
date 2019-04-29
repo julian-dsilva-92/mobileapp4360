@@ -1,6 +1,7 @@
 package com.example.calendar_view;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,29 +10,72 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.mobileapp.newappt.newAppt;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class MainCalendarActivity extends AppCompatActivity {
 
     public GregorianCalendar cal_month, cal_month_copy;
     private eventAdapter eventadapter;
     private TextView tv_month;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private List<getApptDetails>appointmentDetail = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.calendar_activity);
+
+
 
         ApptDetails.apptArray=new ArrayList<ApptDetails>();
+
+        DatabaseReference ref = database.getReference("appointments");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                appointmentDetail.clear();
+                for (DataSnapshot apptDetails : dataSnapshot.getChildren()){
+                  getApptDetails newAppt = new getApptDetails();
+                  newAppt.setDay(apptDetails.child("day").getValue().toString());
+                  newAppt.setMonth(apptDetails.child("month").getValue().toString());
+                  newAppt.setYear(apptDetails.child("year").getValue().toString());
+                  newAppt.setStartTime(apptDetails.child("startTime").getValue().toString());
+                  newAppt.setEndTime(apptDetails.child("endTime").getValue().toString());
+                  newAppt.setAmPmstart(apptDetails.child("amPmstart").getValue().toString());
+                  newAppt.setAmPmend(apptDetails.child("amPmend").getValue().toString());
+                  newAppt.setNotes(apptDetails.child("notes").getValue().toString());
+
+
+                  // adds appointments to the calendar view
+                  ApptDetails.apptArray.add(new ApptDetails(newAppt.getDay(),  newAppt.getMonth(),  newAppt.getYear(), newAppt.getStartTime() ,  newAppt.getEndTime(),  newAppt.getAmPmstart(),  newAppt.getAmPmend(), "Timmy Turner",  newAppt.getNotes()));
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+/*
         ApptDetails.apptArray.add(new ApptDetails( "07",  "05",  "2019",  10,  11,  "am",  "am", "Timmy Turner",  "Wants a fade"));
         ApptDetails.apptArray.add(new ApptDetails( "07",  "05",  "2019",  11,  12,  "am",  "pm", "Timmy Johnson",  "Haircut"));
         ApptDetails.apptArray.add(new ApptDetails( "08",  "05",  "2019",  10,  11,  "am",  "pm", "Tim John",  "Haircut with dye"));
 
-
+*/
 
         cal_month = (GregorianCalendar) GregorianCalendar.getInstance();
         cal_month_copy = (GregorianCalendar) cal_month.clone();

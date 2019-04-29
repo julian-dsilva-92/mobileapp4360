@@ -4,8 +4,8 @@ public class ApptSet {
     private String day;
     private  String month;
     private  String year;
-    private int startTime;
-    private int endTime;
+    private String startTime;
+    private String endTime;
     private String amPmstart;
     private String amPmend;
     private String customerID;
@@ -13,7 +13,7 @@ public class ApptSet {
     private String notes;
     private String stylistKey;
 
-    public ApptSet(String day, String month, String year, int startTime, int endTime, String amPmstart, String amPmend, String customerID,  String notes, String Stylistskey) {
+    public ApptSet(String day, String month, String year, String startTime, String endTime, String amPmstart, String amPmend, String customerID,  String notes, String Stylistskey, String phone) {
         this.day = day;
         this.month = month;
         this.year = year;
@@ -68,19 +68,19 @@ public class ApptSet {
         this.year = year;
     }
 
-    public int getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(int startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public int getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(int endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 

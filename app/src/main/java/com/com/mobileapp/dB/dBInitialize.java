@@ -20,10 +20,10 @@ public class dBInitialize {
 
 
     //sets the appointment
-    public void setAppointment(String day, String month, String year, int startTime, int endTime, String amPmstart, String amPmend, String customerID, String notes, String Stylistskey) {
+    public void setAppointment(String day, String month, String year, String startTime, String endTime, String amPmstart, String amPmend, String customerID, String notes, String Stylistskey, String phone) {
 
         DatabaseReference appointmentRef = database.getReference("appointments");
-        appointmentRef.push().setValue(new ApptSet(day, month, year, startTime, endTime, amPmstart, amPmend, customerID, notes, Stylistskey));
+        appointmentRef.push().setValue(new ApptSet(day, month, year, startTime, endTime, amPmstart, amPmend, customerID, notes, Stylistskey, phone));
     }
 
 
