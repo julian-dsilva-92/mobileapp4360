@@ -17,29 +17,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ProfileActivity">
 
-
-        <activity android:name=".loginregistration.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-
-        <activity android:name=".loginregistration.NewClient"></activity>
-
-        <activity android:name=".dashboard.dashboard">
 
         </activity>
 
-        <activity android:name=".loginregistration.NewUser"></activity>
+
 
         <activity android:name=".calendar.MainCalendarActivity">
 
         </activity>
 
+        <activity
+            android:name=".NewClient"
+            android:label="@string/title_activity_new_client"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
+        <activity
+            android:name=".NewUser"
+            android:label="@string/title_activity_new_user"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".camera.ImagesActivity"></activity>
         <activity android:name=".dashboard.ContactList"></activity>
 
