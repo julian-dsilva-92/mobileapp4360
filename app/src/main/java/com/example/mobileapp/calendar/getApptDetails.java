@@ -10,6 +10,15 @@ public class getApptDetails {
     private String notes;
     private String startTime;
     private String year;
+    private String customerID;
+
+    public String getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
+    }
 
     public getApptDetails(String amPmend, String amPmstart, String day, String endTime, String month, String notes, String startTime, String year) {
         this.amPmend = amPmend;

@@ -1,5 +1,8 @@
 package com.example.mobileapp.dB;
 
+import android.widget.TextView;
+
+import com.example.mobileapp.R;
 import com.example.mobileapp.calendar.ApptSet;
 import com.example.mobileapp.calendar.newAppt;
 import com.google.firebase.database.DataSnapshot;
@@ -48,34 +51,15 @@ public class dBInitialize {
     }
 
 
+
     public interface KeyCallback {
         void onKeyCallback(String value);
 
     }
+
+
+
 }
-
-
-/*
-    public void getAppointment() {
-
-        DatabaseReference myRef = database.getReference("appointments/appointment1");
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String test = dataSnapshot.child("customerID").getValue(String.class);
-                System.out.println("Value is: " + test);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                System.out.println("Failed to read value." + error.toException());
-            }
-        });
-    }
-*/
-
 
 
 

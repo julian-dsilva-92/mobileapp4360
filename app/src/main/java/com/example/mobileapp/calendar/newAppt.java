@@ -125,6 +125,7 @@ public class newAppt extends AppCompatActivity {
                             } else {
                                 newCustomer.setText("Create Appointment");
 
+
                                 getCustomerName(value);
 
                             }
@@ -574,35 +575,48 @@ public class newAppt extends AppCompatActivity {
 
 
         });
-
-        sendNewApptQuery(Key);
+        sendAppointment(Key);
     }
 
 
-    public void sendNewApptQuery(String custKey) {
+    public void sendAppointment(String Key) {
 
-
-        StylistKey = "6"; //passed from login
-        customerKey = custKey;
-
-        Button newCustomer = findViewById(R.id.button3);
-        newCustomer.setOnClickListener(new View.OnClickListener() {
+        DatabaseReference ref = database.getReference("customers/" + Key);
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                EditText apptnotes = findViewById(R.id.editText5);
-                setnotes = apptnotes.getText().toString();
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                dBInitialize newAppointmentQuery = new dBInitialize();
+                fname = dataSnapshot.child("firstName").getValue(String.class);
+                lname = dataSnapshot.child("lastName").getValue(String.class);
+                customerName = fname + " " + lname;
+                StylistKey = "6"; //passed from login
+                Button newCustomer = findViewById(R.id.button3);
+                newCustomer.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        EditText apptnotes = findViewById(R.id.editText5);
+                        setnotes = apptnotes.getText().toString();
 
-                //creates a new appointment
-                newAppointmentQuery.setAppointment(setday, setmonth, setyear, setstartTime, setendTime, setstartTimeamPm, setendTimeamPm, customerKey, setnotes, StylistKey, setphone);
+                        dBInitialize newAppointmentQuery = new dBInitialize();
+
+                        //creates a new appointment
+                        newAppointmentQuery.setAppointment(setday, setmonth, setyear, setstartTime, setendTime, setstartTimeamPm, setendTimeamPm, customerName, setnotes, StylistKey, setphone);
+
+                    }
+                });
+
 
             }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+
         });
 
-
     }
-
 
 }
 

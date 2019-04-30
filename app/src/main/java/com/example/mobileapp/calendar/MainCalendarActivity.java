@@ -53,10 +53,11 @@ public class MainCalendarActivity extends AppCompatActivity {
                   newAppt.setAmPmstart(apptDetails.child("amPmstart").getValue().toString());
                   newAppt.setAmPmend(apptDetails.child("amPmend").getValue().toString());
                   newAppt.setNotes(apptDetails.child("notes").getValue().toString());
+                  newAppt.setCustomerID(apptDetails.child("customerID").getValue().toString());
 
 
                   // adds appointments to the calendar view
-                  ApptDetails.apptArray.add(new ApptDetails(newAppt.getDay(),  newAppt.getMonth(),  newAppt.getYear(), newAppt.getStartTime() ,  newAppt.getEndTime(),  newAppt.getAmPmstart(),  newAppt.getAmPmend(), "Timmy Turner",  newAppt.getNotes()));
+                  ApptDetails.apptArray.add(new ApptDetails(newAppt.getDay(),  newAppt.getMonth(),  newAppt.getYear(), newAppt.getStartTime() ,  newAppt.getEndTime(),  newAppt.getAmPmstart(),  newAppt.getAmPmend(), newAppt.getCustomerID(),  newAppt.getNotes()));
 
                 }
 
@@ -70,12 +71,6 @@ public class MainCalendarActivity extends AppCompatActivity {
             }
         });
 
-/*
-        ApptDetails.apptArray.add(new ApptDetails( "07",  "05",  "2019",  10,  11,  "am",  "am", "Timmy Turner",  "Wants a fade"));
-        ApptDetails.apptArray.add(new ApptDetails( "07",  "05",  "2019",  11,  12,  "am",  "pm", "Timmy Johnson",  "Haircut"));
-        ApptDetails.apptArray.add(new ApptDetails( "08",  "05",  "2019",  10,  11,  "am",  "pm", "Tim John",  "Haircut with dye"));
-
-*/
 
         cal_month = (GregorianCalendar) GregorianCalendar.getInstance();
         cal_month_copy = (GregorianCalendar) cal_month.clone();
