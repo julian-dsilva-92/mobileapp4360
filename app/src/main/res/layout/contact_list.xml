@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".dashboard.ContactList">
 
     <ListView
         android:id="@+id/contact_list"
@@ -17,13 +17,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintTop_toBottomOf="@+id/newCustomer" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/newCustomer"
         android:layout_width="68dp"
         android:layout_height="54dp"
         android:layout_marginTop="16dp"
+        android:onClick="addContact"
         app:layout_constraintBottom_toTopOf="@+id/contact_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/search_Bar"
@@ -35,7 +36,7 @@
         android:layout_width="260dp"
         android:layout_height="51dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintEnd_toStartOf="@+id/newCustomer"
         app:layout_constraintStart_toEndOf="@+id/return_but"
         app:layout_constraintTop_toTopOf="parent" />
 

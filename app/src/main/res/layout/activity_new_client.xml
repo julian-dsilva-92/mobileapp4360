@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewClient">
+    tools:context=".loginregistration.NewUser">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="First Name" />
+            android:hint="First Name" />
 
         <EditText
             android:id="@+id/txtLastName"
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Last Name" />
+            android:hint="Last Name" />
 
         <EditText
             android:id="@+id/txtPhoneNum"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="phone"
-            android:text="Phone Number" />
+            android:hint="Phone Number" />
 
         <EditText
             android:id="@+id/txtEmail"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:text="Email" />
+            android:hint="Email" />
 
         <EditText
             android:id="@+id/txtClientNotes"
@@ -55,13 +55,13 @@
             android:layout_height="148dp"
             android:ems="10"
             android:inputType="textMultiLine"
-            android:text="Write notes or specs about your client here" />
+            android:hint="Write notes or specs about your client here" />
 
         <Button
             android:id="@+id/btNewClient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Client" />
+            android:hint="Add Client" />
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.mobileapp.R;
+import com.example.mobileapp.loginregistration.NewClient;
+import com.example.mobileapp.loginregistration.NewUser;
 
 
 public class ContactList extends AppCompatActivity {
@@ -41,18 +43,21 @@ public class ContactList extends AppCompatActivity {
             }
         });
 
+
+
+
     }
-    //////Search BAR
- //   public boolean onCreateOptions
+
 
  public void returnMenu (View view){
         Intent menu = new Intent(this, dashboard.class);
         startActivity(menu);
  }
-    /*public void addContact(View v){
-            Intent add = new Intent(this, addContact);
+
+    public void addContact(View view){
+            Intent add = new Intent(this, NewClient.class);
             startActivity(add);
-        }*/
+        }
 
 }
 
