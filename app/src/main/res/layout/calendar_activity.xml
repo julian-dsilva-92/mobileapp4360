@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -75,10 +74,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#ffffff"
-            android:paddingBottom="5dp"
             android:paddingLeft="2dp"
+            android:paddingTop="6dp"
             android:paddingRight="2dp"
-            android:paddingTop="6dp">
+            android:paddingBottom="5dp">
 
             <TextView
                 android:id="@+id/TextView06"
@@ -87,8 +86,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="S"
-                android:textSize="20dp"
-                android:textColor="#4b4a4a" />
+                android:textColor="#4b4a4a"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/TextView05"
@@ -97,8 +96,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="M"
-                android:textSize="20dp"
-                android:textColor="#4b4a4a" />
+                android:textColor="#4b4a4a"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/TextView04"
@@ -107,8 +106,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="T"
-                android:textSize="20dp"
-                android:textColor="#4b4a4a" />
+                android:textColor="#4b4a4a"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/TextView03"
@@ -117,8 +116,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="W"
-                android:textSize="20dp"
-                android:textColor="#4b4a4a" />
+                android:textColor="#4b4a4a"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/TextView02"
@@ -127,8 +126,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="T"
-                android:textSize="20dp"
-                android:textColor="#4b4a4a" />
+                android:textColor="#4b4a4a"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/TextView01"
@@ -137,8 +136,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="F"
-                android:textSize="20dp"
-                android:textColor="#4b4a4a" />
+                android:textColor="#4b4a4a"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/textView1"
@@ -147,8 +146,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="S"
-                android:textSize="20dp"
-                android:textColor="#4b4a4a" />
+                android:textColor="#4b4a4a"
+                android:textSize="20dp" />
 
         </TableRow>
 
@@ -193,10 +192,12 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="22dp"
+
             android:layout_marginTop="52dp"
             android:layout_marginEnd="70dp"
             android:layout_marginBottom="22dp"
             android:layout_toStartOf="@+id/apptButton"
+            android:background="@drawable/button_style"
             android:text="Dashboard" />
 
         <Button
@@ -204,11 +205,13 @@
             android:layout_width="140dp"
             android:layout_height="66dp"
             android:layout_alignParentTop="true"
+
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="52dp"
             android:layout_marginEnd="39dp"
             android:layout_marginBottom="22dp"
+            android:background="@drawable/button_style"
             android:text="New Appointment" />
     </RelativeLayout>
 

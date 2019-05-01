@@ -129,6 +129,8 @@
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
+        android:background="@drawable/button_style"
+
         android:onClick="goBack"
         android:text="Back"
         app:layout_constraintStart_toStartOf="parent"
@@ -139,6 +141,8 @@
         android:layout_width="127dp"
         android:layout_height="73dp"
         android:layout_marginStart="8dp"
+        android:background="@drawable/button_style"
+
         android:layout_marginEnd="16dp"
         android:text="Create Appointment"
         app:layout_constraintBottom_toBottomOf="parent"

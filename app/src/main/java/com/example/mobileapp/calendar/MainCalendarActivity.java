@@ -29,7 +29,8 @@ public class MainCalendarActivity extends AppCompatActivity {
     private eventAdapter eventadapter;
     private TextView tv_month;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private List<getApptDetails>appointmentDetail = new ArrayList<>();
+    private List<getApptDetails> appointmentDetail = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,31 +38,30 @@ public class MainCalendarActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        ApptDetails.apptArray=new ArrayList<ApptDetails>();
+        ApptDetails.apptArray = new ArrayList<ApptDetails>();
 
         DatabaseReference ref = database.getReference("appointments");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 appointmentDetail.clear();
-                for (DataSnapshot apptDetails : dataSnapshot.getChildren()){
-                  getApptDetails newAppt = new getApptDetails();
-                  newAppt.setDay(apptDetails.child("day").getValue().toString());
-                  newAppt.setMonth(apptDetails.child("month").getValue().toString());
-                  newAppt.setYear(apptDetails.child("year").getValue().toString());
-                  newAppt.setStartTime(apptDetails.child("startTime").getValue().toString());
-                  newAppt.setEndTime(apptDetails.child("endTime").getValue().toString());
-                  newAppt.setAmPmstart(apptDetails.child("amPmstart").getValue().toString());
-                  newAppt.setAmPmend(apptDetails.child("amPmend").getValue().toString());
-                  newAppt.setNotes(apptDetails.child("notes").getValue().toString());
-                  newAppt.setCustomerID(apptDetails.child("customerID").getValue().toString());
+                for (DataSnapshot apptDetails : dataSnapshot.getChildren()) {
+                    getApptDetails newAppt = new getApptDetails();
+                    newAppt.setDay(apptDetails.child("day").getValue().toString());
+                    newAppt.setMonth(apptDetails.child("month").getValue().toString());
+                    newAppt.setYear(apptDetails.child("year").getValue().toString());
+                    newAppt.setStartTime(apptDetails.child("startTime").getValue().toString());
+                    newAppt.setEndTime(apptDetails.child("endTime").getValue().toString());
+                    newAppt.setAmPmstart(apptDetails.child("amPmstart").getValue().toString());
+                    newAppt.setAmPmend(apptDetails.child("amPmend").getValue().toString());
+                    newAppt.setNotes(apptDetails.child("notes").getValue().toString());
+                    newAppt.setCustomerID(apptDetails.child("customerID").getValue().toString());
 
 
-                  // adds appointments to the calendar view
-                  ApptDetails.apptArray.add(new ApptDetails(newAppt.getDay(),  newAppt.getMonth(),  newAppt.getYear(), newAppt.getStartTime() ,  newAppt.getEndTime(),  newAppt.getAmPmstart(),  newAppt.getAmPmend(), newAppt.getCustomerID(),  newAppt.getNotes()));
-                        refreshCalendar();
+                    // adds appointments to the calendar view
+                    ApptDetails.apptArray.add(new ApptDetails(newAppt.getDay(), newAppt.getMonth(), newAppt.getYear(), newAppt.getStartTime(), newAppt.getEndTime(), newAppt.getAmPmstart(), newAppt.getAmPmend(), newAppt.getCustomerID(), newAppt.getNotes()));
+
                 }
-
 
 
             }
@@ -75,7 +75,7 @@ public class MainCalendarActivity extends AppCompatActivity {
 
         cal_month = (GregorianCalendar) GregorianCalendar.getInstance();
         cal_month_copy = (GregorianCalendar) cal_month.clone();
-        eventadapter = new eventAdapter(this, cal_month,ApptDetails.apptArray);
+        eventadapter = new eventAdapter(this, cal_month, ApptDetails.apptArray);
 
         tv_month = (TextView) findViewById(R.id.tv_month);
         tv_month.setText(android.text.format.DateFormat.format("MMMM yyyy", cal_month));
@@ -86,8 +86,8 @@ public class MainCalendarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    setPreviousMonth();
-                    refreshCalendar();
+                setPreviousMonth();
+                refreshCalendar();
 
             }
         });
@@ -95,8 +95,8 @@ public class MainCalendarActivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    setNextMonth();
-                    refreshCalendar();
+                setNextMonth();
+                refreshCalendar();
             }
         });
         GridView gridview = (GridView) findViewById(R.id.gv_calendar);
@@ -112,23 +112,23 @@ public class MainCalendarActivity extends AppCompatActivity {
 
         Button yourButton = (Button) findViewById(R.id.apptButton);
 
-        yourButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        yourButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), newAppt.class));
             }
         });
 
         Button Button2 = (Button) findViewById(R.id.apptButton2);
 
-        Button2.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        Button2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), dashboard.class));
             }
         });
 
 
-
     }
+
     protected void setNextMonth() {
         if (cal_month.get(GregorianCalendar.MONTH) == cal_month.getActualMaximum(GregorianCalendar.MONTH)) {
             cal_month.set((cal_month.get(GregorianCalendar.YEAR) + 1), cal_month.getActualMinimum(GregorianCalendar.MONTH), 1);
