@@ -59,7 +59,7 @@ public class MainCalendarActivity extends AppCompatActivity {
 
                   // adds appointments to the calendar view
                   ApptDetails.apptArray.add(new ApptDetails(newAppt.getDay(),  newAppt.getMonth(),  newAppt.getYear(), newAppt.getStartTime() ,  newAppt.getEndTime(),  newAppt.getAmPmstart(),  newAppt.getAmPmend(), newAppt.getCustomerID(),  newAppt.getNotes()));
-
+                        refreshCalendar();
                 }
 
 

@@ -27,18 +27,8 @@
         android:onClick="addContact"
         app:layout_constraintBottom_toTopOf="@+id/contact_list"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/search_Bar"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_input_add" />
-
-    <SearchView
-        android:id="@+id/search_Bar"
-        android:layout_width="260dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/newCustomer"
-        app:layout_constraintStart_toEndOf="@+id/return_but"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/return_but"
@@ -47,8 +37,25 @@
         android:layout_marginTop="16dp"
         android:onClick="returnMenu"
         app:layout_constraintBottom_toTopOf="@+id/contact_list"
-        app:layout_constraintEnd_toStartOf="@+id/search_Bar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="264dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Search"
+        app:layout_constraintBottom_toTopOf="@+id/contact_list"
+        app:layout_constraintEnd_toStartOf="@+id/newCustomer"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/return_but"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 </android.support.constraint.ConstraintLayout>

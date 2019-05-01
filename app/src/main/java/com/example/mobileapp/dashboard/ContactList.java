@@ -1,18 +1,37 @@
 package com.example.mobileapp.dashboard;
 
+import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.example.mobileapp.R;
 import com.example.mobileapp.loginregistration.NewClient;
 import com.example.mobileapp.loginregistration.NewUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 public class ContactList extends AppCompatActivity {
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
     String[] nameArray = {"Allie", "Bob", "Eric", "James", "Tom", "Zeus"};
@@ -35,25 +54,56 @@ public class ContactList extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        contact_row custom = new contact_row(this, nameArray, phoneArray);///rows of list view
-        listView = findViewById(R.id.contact_list);
-        listView.setAdapter(custom);
 
-      //  listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-         //   @Override
-          //  public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-             //   Intent intent = new Intent(view.getContext(), edit_contact.class);
-              //  startActivity(intent);
-     //       }
-      //  });
+        final EditText search = findViewById(R.id.editText4);
+        search.addTextChangedListener(new TextWatcher() {
 
 
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
 
+                DatabaseReference ref = database.getReference("customers");
+
+                ref.orderByChild("phone").equalTo(search.getText().toString()).addValueEventListener(new ValueEventListener() {
+
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        ArrayList<String> list = new ArrayList<String>();
+                        if (dataSnapshot.exists())
+                            for (DataSnapshot datas : dataSnapshot.getChildren()) {
+
+                                list.add(datas.getKey());
+
+                                getNameandPhone(list);
+                            }
+                    }
+
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+
+                });
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
 
- public void returnMenu (View view){
+            public void returnMenu (View view){
         Intent menu = new Intent(this, dashboard.class);
         startActivity(menu);
  }
@@ -63,6 +113,51 @@ public class ContactList extends AppCompatActivity {
             startActivity(add);
         }
 
-}
+
+
+
+
+
+        public void getNameandPhone (final ArrayList<String> list) {
+            final String [] nArray = new String[list.size()];
+            final String [] pArray = new String[list.size()];
+
+            for (int i = 0; i < list.size(); i++) {
+
+                DatabaseReference ref = database.getReference("customers/" + list.get(i));
+                final int finalI = i;
+                ref.addValueEventListener(new ValueEventListener() {
+
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                      String fname = dataSnapshot.child("firstName").getValue(String.class);
+                      String  lname = dataSnapshot.child("lastName").getValue(String.class);
+                      String phone = dataSnapshot.child("phone").getValue(String.class);
+                      String name = fname + " " +  lname;
+                      nArray[finalI] = name;
+                      pArray[finalI] = phone;
+                        contact_row custom = new contact_row(ContactList.this, nArray, pArray);///rows of list view
+                        listView = findViewById(R.id.contact_list);
+                        listView.setAdapter(custom);
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        }
+
+            }
+
+
+
+
+
 
 
