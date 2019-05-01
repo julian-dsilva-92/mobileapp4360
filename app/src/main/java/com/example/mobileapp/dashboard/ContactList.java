@@ -55,8 +55,28 @@ public class ContactList extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
+        DatabaseReference ref = database.getReference("customers");
 
-        final EditText search = findViewById(R.id.editText4);
+        ref.addValueEventListener(new ValueEventListener() {
+
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+
+        });
+
+
+
+            final EditText search = findViewById(R.id.editText4);
         search.addTextChangedListener(new TextWatcher() {
 
 
@@ -71,8 +91,7 @@ public class ContactList extends AppCompatActivity {
 
                 DatabaseReference ref = database.getReference("customers");
 
-                ref.orderByChild("phone").equalTo(search.getText().toString()).addValueEventListener(new ValueEventListener() {
-
+                ref.addValueEventListener(new ValueEventListener() {
 
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
