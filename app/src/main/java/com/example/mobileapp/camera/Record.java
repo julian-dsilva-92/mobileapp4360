@@ -1,20 +1,21 @@
 package com.example.mobileapp.camera;
 
 public class Record {
-
     private String id;
     private String encodedImage;
     private String hairStyleInfo;
     private String hairStyleDate;
+    private String customerPhNo;
 
     public Record() {
     }
 
-    public Record(String id, String encodedImage, String hairStyleInfo, String hairStyleDate) {
+    public Record(String id, String encodedImage, String hairStyleInfo, String hairStyleDate, String customerPhNo) {
         this.id = id;
         this.encodedImage = encodedImage;
         this.hairStyleInfo = hairStyleInfo;
         this.hairStyleDate = hairStyleDate;
+        this.customerPhNo = customerPhNo;
     }
 
     public String getId() {
@@ -47,5 +48,13 @@ public class Record {
 
     public void setHairStyleDate(String hairStyleDate) {
         this.hairStyleDate = hairStyleDate;
+    }
+
+    public String getCustomerPhNo() {
+        return customerPhNo;
+    }
+
+    public void setCustomerPhNo(String customerPhNo) {
+        this.customerPhNo = customerPhNo;
     }
 }
