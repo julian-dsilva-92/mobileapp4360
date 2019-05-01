@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.mobileapp.R;
+import com.example.mobileapp.dashboard.dashboard;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -116,6 +117,16 @@ public class MainCalendarActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), newAppt.class));
             }
         });
+
+        Button Button2 = (Button) findViewById(R.id.apptButton2);
+
+        Button2.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(), dashboard.class));
+            }
+        });
+
+
 
     }
     protected void setNextMonth() {

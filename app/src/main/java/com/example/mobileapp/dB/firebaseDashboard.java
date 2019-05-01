@@ -16,26 +16,26 @@ public class firebaseDashboard
 {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference("appointments");
-    private List<getApptDashboard> appts = new ArrayList<>();
+                DatabaseReference ref = database.getReference("appointments");
+                private List<getApptDashboard> appts = new ArrayList<>();
 
-    public void getdashboarddata(final getallAppts allappts){
+                public void getdashboarddata(final getallAppts allappts){
 
 
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
-            getApptDashboard appt = data.getValue(getApptDashboard.class);
-            appts.add(appt);
+                    ref.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                getApptDashboard appt = data.getValue(getApptDashboard.class);
+                                appts.add(appt);
 
-                }
-                allappts.Dataisloaded(appts);
+                            }
+                            allappts.Dataisloaded(appts);
 
-            }
+                        }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });

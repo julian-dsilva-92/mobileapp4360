@@ -186,17 +186,29 @@
 
 
         <Button
-            android:id="@+id/apptButton"
+            android:id="@+id/apptButton2"
             android:layout_width="140dp"
             android:layout_height="66dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginBottom="22dp"
+            android:layout_toStartOf="@+id/apptButton"
+            android:text="Dashboard" />
+
+        <Button
+            android:id="@+id/apptButton"
+            android:layout_width="140dp"
+            android:layout_height="66dp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="138dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="133dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="39dp"
+            android:layout_marginBottom="22dp"
             android:text="New Appointment" />
     </RelativeLayout>
 

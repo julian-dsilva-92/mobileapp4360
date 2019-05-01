@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.mobileapp.R;
 import com.example.mobileapp.dB.dBInitialize;
+import com.example.mobileapp.loginregistration.NewClient;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -106,23 +107,26 @@ public class newAppt extends AppCompatActivity {
 
                         @Override
                         public void onKeyCallback(String value) {
-                            Button newCustomer = findViewById(R.id.button3);
+                                Button newCustomer = findViewById(R.id.button3);
 
-                            if (value.isEmpty()) {
+                                if (value.isEmpty()) {
 
-                                displayCustomer.setText("Customer not found");
-                                newCustomer.setText("New Customer");
+                                    displayCustomer.setText("Customer not found");
+                                    newCustomer.setText("New Customer");
 
-                                newCustomer.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        //new customer intent starts here
+                                    newCustomer.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            //new customer intent starts here
 
-                                    }
-                                });
+                                            Intent add = new Intent(getApplicationContext(), NewClient.class);
+                                            startActivity(add);
+
+                                        }
+                                    });
 
 
-                            } else {
+                                } else {
                                 newCustomer.setText("Create Appointment");
 
 
@@ -601,6 +605,10 @@ public class newAppt extends AppCompatActivity {
 
                         //creates a new appointment
                         newAppointmentQuery.setAppointment(setday, setmonth, setyear, setstartTime, setendTime, setstartTimeamPm, setendTimeamPm, customerName, setnotes, StylistKey, setphone);
+                        Toast.makeText
+                                (getApplicationContext(), "Appointment Successfully Created" , Toast.LENGTH_SHORT)
+                                .show();
+
 
                     }
                 });

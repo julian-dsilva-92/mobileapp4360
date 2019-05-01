@@ -35,13 +35,13 @@ public class ContactList extends AppCompatActivity {
         listView = findViewById(R.id.contact_list);
         listView.setAdapter(custom);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(view.getContext(), edit_contact.class);
-                startActivity(intent);
-            }
-        });
+      //  listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+         //   @Override
+          //  public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+             //   Intent intent = new Intent(view.getContext(), edit_contact.class);
+              //  startActivity(intent);
+     //       }
+      //  });
 
 
 
