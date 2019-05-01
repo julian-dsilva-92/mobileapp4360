@@ -40,6 +40,8 @@ public class LoginActivity extends AppCompatActivity {
         mEmail = (EditText) findViewById(R.id.editText);
         mPassword = (EditText) findViewById(R.id.editText3);
 
+        getSupportActionBar().hide();
+
         Button btLogin = (Button) findViewById(R.id.btLogin);
         btLogin.setOnClickListener(new OnClickListener() {
             @Override

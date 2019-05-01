@@ -13,6 +13,8 @@ import com.example.mobileapp.loginregistration.NewUser;
 
 
 public class ContactList extends AppCompatActivity {
+
+
     String[] nameArray = {"Allie", "Bob", "Eric", "James", "Tom", "Zeus"};
 
     String[] phoneArray = {
@@ -30,6 +32,8 @@ public class ContactList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contact_list);
+
+        getSupportActionBar().hide();
 
         contact_row custom = new contact_row(this, nameArray, phoneArray);///rows of list view
         listView = findViewById(R.id.contact_list);

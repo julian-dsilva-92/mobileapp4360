@@ -35,7 +35,7 @@ public class MainCalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar_activity);
 
-
+        getSupportActionBar().hide();
 
         ApptDetails.apptArray=new ArrayList<ApptDetails>();
 

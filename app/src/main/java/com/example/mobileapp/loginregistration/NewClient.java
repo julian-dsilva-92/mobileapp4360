@@ -22,6 +22,8 @@ public class NewClient extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_client);
 
+        getSupportActionBar().hide();
+
 
       /*  Button btWithImage = (Button) findViewById(R.id.btNewClient);
         btWithImage.setOnClickListener(new View.OnClickListener() {

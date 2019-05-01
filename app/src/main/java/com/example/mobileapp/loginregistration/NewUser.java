@@ -24,6 +24,8 @@ public class NewUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user);
 
+        getSupportActionBar().hide();
+
         firstName = findViewById(R.id.txtFirstName);
         lastName = findViewById(R.id.txtLastName);
         phone = findViewById(R.id.txtPhoneNum);

@@ -24,13 +24,15 @@ import java.util.List;
 
 public class dashboard extends AppCompatActivity {
 
-private RecyclerView mrecyclerview;
+    private RecyclerView mrecyclerview;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
+
+        getSupportActionBar().hide();
 
         mrecyclerview = (RecyclerView) findViewById(R.id.bookrecyclerview);
         new firebaseDashboard().getdashboarddata(new firebaseDashboard.getallAppts() {
@@ -53,7 +55,7 @@ private RecyclerView mrecyclerview;
                 for (DataSnapshot datas : dataSnapshot.getChildren()) {
                     String keys = datas.getKey();
 
-                        getDashboardname(keys);
+                    getDashboardname(keys);
                 }
 
             }
@@ -66,24 +68,23 @@ private RecyclerView mrecyclerview;
     }
 
 
-
-    public void ContactList (View v){
+    public void ContactList(View v) {
         Intent con = new Intent(this, ContactList.class);
         startActivity(con);
     }
 
-    public void calendar (View v ){
+    public void calendar(View v) {
         Intent cal = new Intent(this, MainCalendarActivity.class);
         startActivity(cal);
     }
 
-    public void camera (View v) {
+    public void camera(View v) {
         Intent cam = new Intent(this, CameraActivity.class);
         startActivity(cam);
     }
 
 
-    public void getDashboardname (String key){
+    public void getDashboardname(String key) {
 
         DatabaseReference ref = database.getReference("hairstylists/" + key);
         ref.addValueEventListener(new ValueEventListener() {
@@ -92,7 +93,7 @@ private RecyclerView mrecyclerview;
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        String name  = dataSnapshot.child("fname").getValue(String.class);
+                String name = dataSnapshot.child("fname").getValue(String.class);
 
                 TextView title = findViewById(R.id.textView);
 

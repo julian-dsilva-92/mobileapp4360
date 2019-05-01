@@ -54,6 +54,7 @@ public class newAppt extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.appointmentactivity);
 
+        getSupportActionBar().hide();
 
         String[] year = new String[]{
                 "Year",
