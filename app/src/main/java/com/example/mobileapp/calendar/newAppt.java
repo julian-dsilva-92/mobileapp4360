@@ -100,7 +100,7 @@ public class newAppt extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() == 12) {
+                if (s.length() > 1) {
 
                     setphone = phone.getText().toString();
 

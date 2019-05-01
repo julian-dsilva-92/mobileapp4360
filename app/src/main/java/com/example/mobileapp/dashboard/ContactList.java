@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import com.example.mobileapp.ProfileActivity;
 import com.example.mobileapp.R;
 import com.example.mobileapp.loginregistration.NewClient;
 import com.example.mobileapp.loginregistration.NewUser;
@@ -141,6 +142,20 @@ public class ContactList extends AppCompatActivity {
                         contact_row custom = new contact_row(ContactList.this, nArray, pArray);///rows of list view
                         listView = findViewById(R.id.contact_list);
                         listView.setAdapter(custom);
+
+
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                String key = list.get(position);
+                                Intent intent = new Intent(ContactList.this, ProfileActivity.class);
+                                intent.putExtra("keyValue", key);
+                                startActivity(intent);
+                            }
+                        });
+
+
 
 
                     }
