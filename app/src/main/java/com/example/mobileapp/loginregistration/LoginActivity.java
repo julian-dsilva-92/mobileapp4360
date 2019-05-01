@@ -1,7 +1,5 @@
 package com.example.mobileapp.loginregistration;
 
-
-
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,12 +8,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.example.mobileapp.R;
 import com.example.mobileapp.dashboard.dashboard;
 
 
 public class LoginActivity extends AppCompatActivity {
-
 
     // UI references.
     private EditText mPassword, mEmail;
@@ -35,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
                 String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();
                 if (email.equals("abd@gmail.com") && password.equals("test")) { //if password is correct start dashboard
-                   Intent mainIntent = new Intent(LoginActivity.this, dashboard.class);
+                    Intent mainIntent = new Intent(LoginActivity.this, dashboard.class);
                     startActivity(mainIntent);
 
                 } else {
@@ -43,7 +41,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     public void newUser(View view) {

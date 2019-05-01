@@ -16,16 +16,24 @@
     <ImageView
         android:id="@+id/imgView"
         android:layout_width="500dp"
-        android:layout_height="590dp"
+        android:layout_height="490dp"
         android:layout_below="@+id/btnCamera"
-        android:layout_marginTop="-48dp"
         android:scaleType="fitCenter" />
+
+    <EditText
+        android:id="@+id/etPhoneNumber"
+        android:layout_width="390dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgView"
+        android:layout_centerHorizontal="true"
+        android:hint="Enter Phone Number"
+        android:textSize="20dp" />
 
     <LinearLayout
         android:id="@+id/ll1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imgView"
+        android:layout_below="@+id/etPhoneNumber"
         android:layout_centerHorizontal="true"
         android:orientation="horizontal"
         android:weightSum="2">

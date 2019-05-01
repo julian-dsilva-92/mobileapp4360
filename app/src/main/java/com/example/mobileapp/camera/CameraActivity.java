@@ -51,6 +51,7 @@ public class CameraActivity extends AppCompatActivity {
     private Button btnUploadData;
     private Button btnCamera;
     private EditText etImageInfo;
+    private EditText etPhoneNo;
 
     private ImageView imgView;
 
@@ -76,6 +77,7 @@ public class CameraActivity extends AppCompatActivity {
         btnUploadData = findViewById(R.id.btnUploadData);
         btnCamera = findViewById(R.id.btnCamera);
         etImageInfo = findViewById(R.id.etImageInfo);
+        etPhoneNo = findViewById(R.id.etPhoneNumber);
         imgView = findViewById(R.id.imgView);
 
         myRef = FirebaseDatabase.getInstance().getReference("hairstyles");
@@ -92,7 +94,7 @@ public class CameraActivity extends AppCompatActivity {
                 LocalDate localDate = LocalDate.now();
                 String curDate = DateTimeFormatter.ofPattern("MM/dd/yyyy").format(localDate);
 
-                Record record = new Record(id, base64Img, etImageInfo.getText().toString(), curDate);
+                Record record = new Record(id, base64Img, etImageInfo.getText().toString(), curDate, etPhoneNo.getText().toString());
                 myRef.child(id).setValue(record);
 
                 startActivity(new Intent(getApplicationContext(), ImagesActivity.class));
